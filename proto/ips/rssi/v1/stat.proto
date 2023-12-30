@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+import "ips/shared/rssi/v1/rssi.proto";
+import "ips/shared/rssi/v1/stat.proto";
+
+package ips.rssi.v1.stat;
+
+service StatCollectionService {
+    rpc CollectData (DataCollectionRequest) returns (DataCollectionResponse);
+}
+
+message DataCollectionRequest {
+    repeated ips.shared.rssi.v1.RSSI signals = 1;
+    ips.shared.rssi.v1.Position position = 2;
+    int32 duration = 3;
+    ips.shared.rssi.v1.StatCollectionStage stage = 4;
+    google.protobuf.Timestamp started_at = 5;
+    google.protobuf.Timestamp ended_at = 6;
+    google.protobuf.Timestamp created_at = 7;
+}
+
+message DataCollectionResponse {
+}

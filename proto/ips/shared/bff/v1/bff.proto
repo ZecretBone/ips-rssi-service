@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package ips.shared.bff.v1;
+
+enum HealthStatus {
+    HEALTH_STATUS_OK = 0;
+    HEALTH_STATUS_ERROR = 1;
+}
