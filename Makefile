@@ -16,7 +16,6 @@ initmongo:
 	@printf \\e[1m"Start mongodb replicaset instance via docker"\\e[0m\\n
 	@chmod +x ./scripts/rs-init.sh
 	@docker-compose up -d
-	@sleep 5
 	@docker exec mongo1 /scripts/rs-init.sh
 	@printf \\e[1m"Success startup mongodb"\\e[0m\\n
 

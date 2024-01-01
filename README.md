@@ -5,7 +5,8 @@ Backend server that stay in between front end and services.
 ## Table of Content
 - [Quick Start](#quick-start)
     - [Install Dependency](#install-bufbuild)
-    - [Setup Env file]()
+    - [Pull Git submodule](#pull-git-submodule)
+    - [Setup Local Env]()
     - [Setup Debug Tools (vscode)](#install-protoc)
 - [Protobuf Info](#protobuf-structure)
     - [Structure](#structure)
@@ -36,8 +37,20 @@ go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.2
 export PATH="$PATH:$(go env GOPATH)/bin"
 ```
 
-### Setup Environment File
-filename: `.env.<envname>` eg. `.env.beta`
+### Pull Git Submodule
+using this command ```git submodule update --recursive --remote```
+
+### Setup Local Env
+
+#### Option 1 : using make command
+
+command : `make initbeta`
+
+
+#### Option 2 : Manual
+
+1. Copy `.env.example` to `.env.beta`
+2. Fill up unfill variable inside
 > **Hint:** you can use .env.example as a references on what environment variable need to be set
 
 ### Setup Debug in Vscode
