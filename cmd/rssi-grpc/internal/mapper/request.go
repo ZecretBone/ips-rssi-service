@@ -48,6 +48,11 @@ func ToRSSIModel(deviceModel, deviceID string, req *v1.DataCollectionRequest) mo
 			DeviceID: deviceID,
 			Models:   deviceModel,
 		},
+		Position: models.Position{
+			X: float64(req.Position.X),
+			Y: float64(req.Position.Y),
+			Z: float64(req.Position.Z),
+		},
 		Stage:     FromStatCollectionStateEnumToConstant[req.Stage],
 		Duration:  int(req.Duration),
 		StartedAt: req.StartedAt.AsTime(),
