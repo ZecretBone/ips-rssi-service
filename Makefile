@@ -7,16 +7,17 @@ GOTESTFLAGS ?= -tags "test$(if $(GO_TAGS),$(comma)$(GO_TAGS),)" -short -race
 
 all: generate build
 
-initbeta: initmongo
+preparebeta:
 	@printf \\e[1m"Create beta env file"\\e[0m\\n
-	@$(GO) mod vendor -u
+	@$(GO) mod vendor
 	@cp -n .env.example .env.beta || true
 	@printf \\e[1m"-------------------Finish init beta environment-------------------"\\e[0m\\n
 
-initmongo:
+initbeta: preparebeta
 	@printf \\e[1m"Start mongodb replicaset instance via docker"\\e[0m\\n
 	@chmod +x ./scripts/rs-init.sh
 	@docker-compose up -d
+	@sleep 5
 	@docker exec mongo1 /scripts/rs-init.sh
 	@printf \\e[1m"Success startup mongodb"\\e[0m\\n
 

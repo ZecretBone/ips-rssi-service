@@ -3,6 +3,7 @@ version: '3.8'
 services:
   rssi-grpc-beta:
     build: 
+      context: .
       dockerfile: Dockerfile-beta
     ports:
       - "6000:6000"
