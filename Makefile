@@ -9,6 +9,7 @@ all: generate build
 
 initbeta: initmongo
 	@printf \\e[1m"Create beta env file"\\e[0m\\n
+	@$(GO) mod vendor -u
 	@cp -n .env.example .env.beta || true
 	@printf \\e[1m"-------------------Finish init beta environment-------------------"\\e[0m\\n
 
@@ -19,9 +20,9 @@ initmongo:
 	@docker exec mongo1 /scripts/rs-init.sh
 	@printf \\e[1m"Success startup mongodb"\\e[0m\\n
 
-
 generate: pregenerate
 	@printf \\e[1m"Generate"\\e[0m\\n
+	@$(GO) generate ./...
 	@cd proto && $(GO) generate
 
 pregenerate:
@@ -32,15 +33,11 @@ test:
 	@printf \\e[1m"Run test"\\e[0m\\n
 	@ENV=unittest $(GO) test $(GOTESTFLAGS) ./...
 
-build: .bin/rssi-api .bin/rssi-grpc
+build: .bin/rssi-grpc
 
 go.sum: go.mod
 	@printf \\e[1m"go mod tidy"\\e[0m\\n
 	@$(GO) mod tidy
-
-.bin/rssi-api: go.mod go.sum $(GO_FILES)
-	@printf \\e[1m"Build .bin/rssi-api"\\e[0m\\n
-	@cd cmd/rssi-api && $(GO) build -o ../../.bin/rssi-api .
 
 .bin/rssi-grpc: go.mod go.sum $(GO_FILES)
 	@printf \\e[1m"Build .bin/rssi-grpc"\\e[0m\\n

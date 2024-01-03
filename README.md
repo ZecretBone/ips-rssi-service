@@ -51,6 +51,7 @@ command : `make initbeta`
 
 1. Copy `.env.example` to `.env.beta`
 2. Fill up unfill variable inside
+3. Run `make initmongo`
 > **Hint:** you can use .env.example as a references on what environment variable need to be set
 
 ### Setup Debug in Vscode

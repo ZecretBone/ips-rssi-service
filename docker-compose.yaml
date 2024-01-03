@@ -1,6 +1,15 @@
 version: '3.8'
 
 services:
+  rssi-grpc-beta:
+    build: 
+      dockerfile: Dockerfile-beta
+    ports:
+      - "6000:6000"
+    command: '/opt/rssi-grpc'
+    env_file:
+      - ./.env.beta
+    
   mongo1:
     container_name: mongo1
     image: mongo:4.4

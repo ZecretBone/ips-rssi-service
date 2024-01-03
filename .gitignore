@@ -7,3 +7,4 @@ bin
 .vscode
 .idea
 !.env.example
+vendor
