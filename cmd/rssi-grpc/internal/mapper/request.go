@@ -15,7 +15,7 @@ var (
 	}
 )
 
-func ToRSSIRequestModel(req *v1.DataCollectionRequest) request.StatCollectionRequest {
+func ToRSSIRequestModel(req *v1.CollectDataRequest) request.StatCollectionRequest {
 	output := request.StatCollectionRequest{
 		Signals: make([]models.RSSI, len(req.Signals)),
 		Position: models.Position{
@@ -41,7 +41,7 @@ func ToRSSIRequestModel(req *v1.DataCollectionRequest) request.StatCollectionReq
 	return output
 }
 
-func ToRSSIModel(deviceModel, deviceID string, req *v1.DataCollectionRequest) models.RSSIStatModel {
+func ToRSSIModel(deviceModel, deviceID string, req *v1.CollectDataRequest) models.RSSIStatModel {
 	output := models.RSSIStatModel{
 		RSSIInfo: make([]models.RSSI, len(req.Signals)),
 		DeviceInfo: models.DeviceInfo{

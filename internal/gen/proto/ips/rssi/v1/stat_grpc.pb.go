@@ -4,7 +4,7 @@
 // - protoc             (unknown)
 // source: ips/rssi/v1/stat.proto
 
-package v1
+package rssiv1
 
 import (
 	context "context"
@@ -22,7 +22,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type StatCollectionServiceClient interface {
-	CollectData(ctx context.Context, in *DataCollectionRequest, opts ...grpc.CallOption) (*DataCollectionResponse, error)
+	CollectData(ctx context.Context, in *CollectDataRequest, opts ...grpc.CallOption) (*CollectDataResponse, error)
 }
 
 type statCollectionServiceClient struct {
@@ -33,9 +33,9 @@ func NewStatCollectionServiceClient(cc grpc.ClientConnInterface) StatCollectionS
 	return &statCollectionServiceClient{cc}
 }
 
-func (c *statCollectionServiceClient) CollectData(ctx context.Context, in *DataCollectionRequest, opts ...grpc.CallOption) (*DataCollectionResponse, error) {
-	out := new(DataCollectionResponse)
-	err := c.cc.Invoke(ctx, "/ips.rssi.v1.stat.StatCollectionService/CollectData", in, out, opts...)
+func (c *statCollectionServiceClient) CollectData(ctx context.Context, in *CollectDataRequest, opts ...grpc.CallOption) (*CollectDataResponse, error) {
+	out := new(CollectDataResponse)
+	err := c.cc.Invoke(ctx, "/ips.rssi.v1.StatCollectionService/CollectData", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -46,7 +46,7 @@ func (c *statCollectionServiceClient) CollectData(ctx context.Context, in *DataC
 // All implementations must embed UnimplementedStatCollectionServiceServer
 // for forward compatibility
 type StatCollectionServiceServer interface {
-	CollectData(context.Context, *DataCollectionRequest) (*DataCollectionResponse, error)
+	CollectData(context.Context, *CollectDataRequest) (*CollectDataResponse, error)
 	mustEmbedUnimplementedStatCollectionServiceServer()
 }
 
@@ -54,7 +54,7 @@ type StatCollectionServiceServer interface {
 type UnimplementedStatCollectionServiceServer struct {
 }
 
-func (UnimplementedStatCollectionServiceServer) CollectData(context.Context, *DataCollectionRequest) (*DataCollectionResponse, error) {
+func (UnimplementedStatCollectionServiceServer) CollectData(context.Context, *CollectDataRequest) (*CollectDataResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CollectData not implemented")
 }
 func (UnimplementedStatCollectionServiceServer) mustEmbedUnimplementedStatCollectionServiceServer() {}
@@ -71,7 +71,7 @@ func RegisterStatCollectionServiceServer(s grpc.ServiceRegistrar, srv StatCollec
 }
 
 func _StatCollectionService_CollectData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DataCollectionRequest)
+	in := new(CollectDataRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -80,10 +80,10 @@ func _StatCollectionService_CollectData_Handler(srv interface{}, ctx context.Con
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/ips.rssi.v1.stat.StatCollectionService/CollectData",
+		FullMethod: "/ips.rssi.v1.StatCollectionService/CollectData",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(StatCollectionServiceServer).CollectData(ctx, req.(*DataCollectionRequest))
+		return srv.(StatCollectionServiceServer).CollectData(ctx, req.(*CollectDataRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -92,7 +92,7 @@ func _StatCollectionService_CollectData_Handler(srv interface{}, ctx context.Con
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var StatCollectionService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "ips.rssi.v1.stat.StatCollectionService",
+	ServiceName: "ips.rssi.v1.StatCollectionService",
 	HandlerType: (*StatCollectionServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

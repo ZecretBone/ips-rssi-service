@@ -23,7 +23,7 @@ func ProvideStatServer(statCollectionService statcollection.Service) statv1.Stat
 	}
 }
 
-func (s *StatV1Impl) CollectData(ctx context.Context, req *statv1.DataCollectionRequest) (*statv1.DataCollectionResponse, error) {
+func (s *StatV1Impl) CollectData(ctx context.Context, req *statv1.CollectDataRequest) (*statv1.CollectDataResponse, error) {
 	md, ok := metadata.FromIncomingContext(ctx)
 	if !ok {
 		return nil, errorx.NewAPIError(http.StatusBadRequest, "no header were found")
@@ -33,5 +33,5 @@ func (s *StatV1Impl) CollectData(ctx context.Context, req *statv1.DataCollection
 	if err := s.statCollectionService.AddSignalStatToDB(ctx, mapper.ToRSSIModel("testing", "testing", req)); err != nil {
 		return nil, errorx.NewAPIError(http.StatusBadRequest, err.Error())
 	}
-	return &statv1.DataCollectionResponse{}, nil
+	return &statv1.CollectDataResponse{}, nil
 }
