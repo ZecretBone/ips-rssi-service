@@ -30,7 +30,7 @@ func (s *StatV1Impl) CollectData(ctx context.Context, req *statv1.CollectDataReq
 	}
 	log.Debug().Any("header", md.Get("x-device-id"))
 
-	if err := s.statCollectionService.AddSignalStatToDB(ctx, mapper.ToRSSIModel("testing", "testing", req)); err != nil {
+	if err := s.statCollectionService.AddSignalStatToDB(ctx, mapper.ToRSSIModel(req)); err != nil {
 		return nil, errorx.NewAPIError(http.StatusBadRequest, err.Error())
 	}
 	return &statv1.CollectDataResponse{}, nil

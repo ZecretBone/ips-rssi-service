@@ -32,6 +32,7 @@ func ToRSSIRequestModel(req *v1.CollectDataRequest) request.StatCollectionReques
 	for i, v := range req.Signals {
 		output.Signals[i] = models.RSSI{
 			SSID:        v.Ssid,
+			MacAddress:  v.MacAddress,
 			Strength:    v.Strength,
 			PollingRate: int(v.PollingRate),
 			CreatedAt:   v.CreatedAt.AsTime(),
@@ -41,12 +42,12 @@ func ToRSSIRequestModel(req *v1.CollectDataRequest) request.StatCollectionReques
 	return output
 }
 
-func ToRSSIModel(deviceModel, deviceID string, req *v1.CollectDataRequest) models.RSSIStatModel {
+func ToRSSIModel(req *v1.CollectDataRequest) models.RSSIStatModel {
 	output := models.RSSIStatModel{
 		RSSIInfo: make([]models.RSSI, len(req.Signals)),
 		DeviceInfo: models.DeviceInfo{
-			DeviceID: deviceID,
-			Models:   deviceModel,
+			DeviceID: req.DeviceInfo.DeviceId,
+			Models:   req.DeviceInfo.Models,
 		},
 		Position: models.Position{
 			X: float64(req.Position.X),
@@ -63,6 +64,7 @@ func ToRSSIModel(deviceModel, deviceID string, req *v1.CollectDataRequest) model
 	for i, v := range req.Signals {
 		output.RSSIInfo[i] = models.RSSI{
 			SSID:        v.Ssid,
+			MacAddress:  v.MacAddress,
 			Strength:    v.Strength,
 			PollingRate: int(v.PollingRate),
 			CreatedAt:   v.CreatedAt.AsTime(),

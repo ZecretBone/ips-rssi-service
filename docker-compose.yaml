@@ -1,16 +1,16 @@
-version: '3.8'
+version: "3.8"
 
 services:
-  # rssi-grpc-beta:
-  #   build: 
-  #     context: .
-  #     dockerfile: Dockerfile-beta
-  #   ports:
-  #     - "6000:6000"
-  #   command: '/opt/rssi-grpc'
-  #   env_file:
-  #     - ./.env.beta
-    
+  rssi-grpc-beta:
+    build:
+      context: .
+      dockerfile: Dockerfile-beta
+    ports:
+      - "6000:6000"
+    command: "/opt/rssi-grpc"
+    env_file:
+      - ./.env.beta
+
   mongo1:
     container_name: mongo1
     image: mongo:4.4
@@ -28,7 +28,7 @@ services:
       - mongo2
       - mongo3
     restart: always
-    entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "dbrs" ]
+    entrypoint: ["/usr/bin/mongod", "--bind_ip_all", "--replSet", "dbrs"]
 
   mongo2:
     container_name: mongo2
@@ -38,7 +38,7 @@ services:
     ports:
       - 27018:27017
     restart: always
-    entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "dbrs" ]
+    entrypoint: ["/usr/bin/mongod", "--bind_ip_all", "--replSet", "dbrs"]
   mongo3:
     container_name: mongo3
     image: mongo:4.4
@@ -47,7 +47,7 @@ services:
     ports:
       - 27019:27017
     restart: always
-    entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "dbrs" ]
+    entrypoint: ["/usr/bin/mongod", "--bind_ip_all", "--replSet", "dbrs"]
 
 networks:
   mongo-network:

@@ -3,7 +3,8 @@ package models
 import "time"
 
 type RSSI struct {
-	SSID        string    `bson:"ssid"`         //APs SSID
+	SSID        string    `bson:"ssid"` //APs SSID
+	MacAddress  string    `bson:"mac_address"`
 	Strength    float32   `bson:"strength"`     //RSSI signal strength in Dbm.
 	PollingRate int       `bson:"polling_rate"` //Polling in ms
 	CreatedAt   time.Time `bson:"created_at"`   //RSSI signal capture time
