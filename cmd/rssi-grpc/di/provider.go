@@ -11,6 +11,7 @@ import (
 var ProviderSet = wire.NewSet(
 	server.ProvideGRPCServerCustomizer,
 	handler.ProvideStatServer,
+	handler.ProvideRssiServer,
 	wire.Struct(new(handler.Handlers), "*"),
 )
 
@@ -18,4 +19,5 @@ type Locator struct {
 	Handler              *handler.Handlers
 	GRPCServerCustomizer grpcProvide.GRPCServerCustomizer
 	Stat                 v1.StatCollectionServiceServer
+	Rssi                 v1.CoordinateCollectionServiceServer
 }

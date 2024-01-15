@@ -42,7 +42,7 @@ func ToRSSIRequestModel(req *v1.CollectDataRequest) request.StatCollectionReques
 	return output
 }
 
-func ToRSSIModel(req *v1.CollectDataRequest) models.RSSIStatModel {
+func ToRSSIStatModel(req *v1.CollectDataRequest) models.RSSIStatModel {
 	output := models.RSSIStatModel{
 		RSSIInfo: make([]models.RSSI, len(req.Signals)),
 		DeviceInfo: models.DeviceInfo{
@@ -72,4 +72,10 @@ func ToRSSIModel(req *v1.CollectDataRequest) models.RSSIStatModel {
 	}
 
 	return output
+}
+
+func ToRSSIModel(req *v1.GetCoordinateRequest) []models.RSSI {
+	var rssiModel []models.RSSI
+
+	return rssiModel
 }

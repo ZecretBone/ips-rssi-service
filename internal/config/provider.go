@@ -22,6 +22,10 @@ func ProvideStatCollectionServiceConfig() StatCollectionServiceConfig {
 	return provideConfig(StatCollectionServiceConfig{})
 }
 
+func ProvideApCollectionServiceConfig() ApCollectionServiceConfig {
+	return provideConfig(ApCollectionServiceConfig{})
+}
+
 func provideConfig[T any](cfg T) T {
 	envconfig.MustProcess("", &cfg)
 	return cfg

@@ -26,6 +26,9 @@ type MinioConfig struct {
 type StatCollectionServiceConfig struct {
 }
 
+type ApCollectionServiceConfig struct {
+}
+
 func LoadConfig() {
 	if currentEnvironment, ok := os.LookupEnv("ENV"); ok {
 		_, b, _, _ := runtime.Caller(0)

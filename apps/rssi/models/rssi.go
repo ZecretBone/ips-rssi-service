@@ -3,8 +3,8 @@ package models
 import "time"
 
 type RSSI struct {
-	SSID        string    `bson:"ssid"` //APs SSID
-	MacAddress  string    `bson:"mac_address"`
+	SSID        string    `bson:"ssid"`         //APs SSID
+	MacAddress  string    `bson:"mac_address"`  // MAC Address of APs
 	Strength    float32   `bson:"strength"`     //RSSI signal strength in Dbm.
 	PollingRate int       `bson:"polling_rate"` //Polling in ms
 	CreatedAt   time.Time `bson:"created_at"`   //RSSI signal capture time
@@ -20,3 +20,13 @@ type DeviceInfo struct {
 	DeviceID string `bson:"device_id"` //Device ID
 	Models   string `bson:"models"`    //Device models eg.Samsung
 }
+
+type AccessPoint struct {
+	SSID       string `bson:"ssid"`        //APs SSID
+	MacAddress string `bson:"mac_address"` // MAC Address of APs
+}
+
+// type RSSICoorRequest struct{
+// 	Signals []RSSI `bson:"signals"`
+// 	DeviceInfo DeviceInfo
+// }

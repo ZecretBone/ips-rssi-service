@@ -6,9 +6,11 @@ import (
 )
 
 type Handlers struct {
-	Stat v1.StatCollectionServiceServer
+	Stat       v1.StatCollectionServiceServer
+	Coordinate v1.CoordinateCollectionServiceServer
 }
 
 func RegisterService(server wiregrpc.Server, handler *Handlers) {
 	v1.RegisterStatCollectionServiceServer(server, handler.Stat)
+	v1.RegisterCoordinateCollectionServiceServer(server, handler.Coordinate)
 }
